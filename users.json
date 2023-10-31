@@ -1,0 +1,17 @@
+{
+    "noor@gmail.com": {
+        "name": "Noor",
+        "password": "G7$@U_5WgXqz6mK",
+        "role": "admin"
+    },
+    "rubel@gmail.com": {
+        "username": "Rubel",
+        "password": "123456",
+        "role": "manager"
+    },
+    "karim@gmail.com": {
+        "username": "Karim",
+        "password": "123456",
+        "role": "user"
+    }
+}
