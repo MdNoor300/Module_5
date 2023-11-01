@@ -2,7 +2,7 @@
     "noor@gmail.com": {
         "name": "Noor",
         "password": "G7$@U_5WgXqz6mK",
-        "role": "admin"
+        "role": ""
     },
     "rubel@gmail.com": {
         "username": "Rubel",
@@ -14,4 +14,5 @@
         "password": "123456",
         "role": "user"
     }
+   
 }

@@ -1,47 +1,42 @@
 <?php
 session_start();
 
-$usersfile='users.json';
+$usersfile = 'users.json';
 
-$users= file_exists($usersfile) ? json_decode(file_get_contents($usersfile),true) : [];
+$users = file_exists($usersfile) ? json_decode(file_get_contents($usersfile), true) : [];
 
-
-function saveUsers($users,$file){
-  file_put_contents($file,json_encode($users, JSON_PRETTY_PRINT));
+function saveUsers($users, $file) {
+    file_put_contents($file, json_encode($users, JSON_PRETTY_PRINT));
 }
 
-
-//Registration form handling
-if(isset($_POST['register'])){ 
+// Registration form handling
+if (isset($_POST['register'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Validation
+    if (empty($username) || empty($email) || empty($password)) {
+        $errormsg = "Please fill all the required fields";
+    } else {
+        if (isset($users[$email])) {
+            $errormsg = "Email already taken";
+        } else {
+            $users[$email] = [
+                'username' => $username,
+                'password' => $password,
+                'role' => ''
+            ];
 
-//validation    
-if(empty($username) || empty($email) || empty($password)){
-    $errormsg = "please fill all the required fields";
-}
-else{
-    if(isset($users[$email])){
-                $errormsg = "Email already taken";
-               
-    }else{
-        $users[$email] = [
-            'username' => $username,
-            'password' => $password,
-            'role' => ''
-        ];
-
-        saveUsers($users,$usersfile);
-        $_SESSION['$email'] = $email;
-        header('location:update.php');
-    
+            saveUsers($users, $usersfile);
+            $_SESSION['email'] = $email; // Corrected session variable name
+            header('location:update.php');
+            exit();
+        }
     }
-  }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html>
